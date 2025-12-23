@@ -1,128 +1,170 @@
-.hero {
-  padding: 4rem 0;
-  background: linear-gradient(180deg, #646262 0%, #5799c4 100%);
-  overflow: hidden;
-  position: relative;
+:root {
+  --color-text-main: #212121;
+  --color-text-secondary: #212121;
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-bg-hero: #F4F4F4;
 }
 
-/* Similar to header, we'll create a hero-container if needed,
-   but for grid layout on container, it's safer to have a specific class. */
-.hero-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
+.hero {
+  min-height: 50vh;
+  display: flex;
+  background-color: var(--color-bg-hero);
+  position: relative;
+  overflow: visible;
+}
+
+/* Background image */
+.hero > img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 80%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  min-height: 50vh; /* Ensure container matches hero min-height */
+  padding: 0 5rem 0 10rem;
 }
 
 @media (min-width: 992px) {
-  .hero-container {
-    grid-template-columns: 1fr 1fr;
+  .hero .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch; /* Stretch children to full height */
   }
 }
 
-.hero .content {
-  position: relative;
-  z-index: 10;
-}
-
-.decoration-icon {
-  position: absolute;
-  top: -40px;
-  left: -40px;
-  z-index: -1;
+/* Left Content */
+.hero .container > div:first-child {
+  flex: 0 1 45%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center text vertically */
+  padding: 4rem 0 8rem;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  color: #111827;
-  margin-bottom: 1.5rem;
+  font-size: 4.625rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-text-main);
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
 }
 
-.highlight {
-  font-weight: 300;
-  color: #374151;
+.hero h1 span {
+  white-space: nowrap;
+  display: block;
 }
 
-.description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #4b5563;
+.hero h1 strong {
+  display: block;
+  font-weight: 500;
+  font-size: 3.375rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
   margin-bottom: 2rem;
-  max-width: 500px;
+  font-weight: 400;
+  opacity: 0.5;
 }
 
-.meta {
-  margin-bottom: 2rem;
-  color: #1f2937;
-  font-size: 1.05rem;
+/* Ứng với đoạn thời gian ứng tuyển */
+.hero p:last-of-type {
+  margin-bottom: 3rem;
+  color: var(--color-text-main);
+  font-weight: 700;
+  opacity: 1;
 }
 
-.btn-cta {
+.hero a {
   display: inline-block;
+  align-self: flex-start;
   background-color: var(--color-primary);
   color: white;
-  padding: 0.8rem 2rem;
+  padding: 1.125rem 3.75rem;
   border-radius: 99px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition:
-    transform 0.2s,
-    background-color 0.2s;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  font-family: "Inter", sans-serif;
+}
+
+.hero a:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
 }
 
-.btn-cta:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-2px);
-}
-
-.visual {
+/* Right Image Box */
+.hero-image-wrapper {
   position: relative;
+  flex: 1 1 55%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
+  align-items: flex-end; /* This will naturally push the image to the bottom */
+  justify-content: flex-end;
 }
 
-.graphic-bg {
+@media (min-width: 992px) {
+  .hero-image-wrapper {
+    height: auto; /* Stretch by parent */
+    margin-top: 0;
+  }
+}
+
+.hero-image-wrapper > img {
+  display: block;
+  max-height: 90%; /* Reduced from 100% to make it smaller */
+  width: auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+}
+
+.sparkle {
   position: absolute;
-  width: 120%;
-  height: 120%;
-  z-index: 1;
-  opacity: 0.1; /* Adjusted for shape visibility */
+  right: 5%;
+  top: 15%;
+  z-index: 5;
+  animation: pulse 3s infinite ease-in-out;
 }
 
-.arrow-shape {
-  width: 100%;
-  height: 100%;
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
 }
 
-.image-placeholder {
-  width: 100%;
-  height: 400px;
-  background: #e5e7eb;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  background: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80")
-    no-repeat center center;
-  background-size: cover;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+/* Tablet & Mobile */
+@media (max-width: 991px) {
+  .hero h1 { font-size: 2.75rem; }
+  .hero-image-wrapper > img { max-height: 110%; }
 }
 
-.placeholder-content {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  display: none; /* Hidden since I added a real unsplash image URL above */
+@media (max-width: 768px) {
+  .hero { min-height: auto; padding: 3rem 0; }
+  .hero .container { padding: 0 1.5rem; }
+  .hero h1 { font-size: 2.25rem; }
+  .hero p { font-size: 1rem; }
+  .hero-image-wrapper { height: 400px; }
+  .hero-image-wrapper > img { max-height: 100%; }
+  .sparkle { right: 10%; top: 10%; }
+  .sparkle svg { width: 30px; height: 30px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.875rem; }
+  .hero a { padding: 0.875rem 2rem; font-size: 1rem; }
+  .hero-image-wrapper { height: 350px; }
 }

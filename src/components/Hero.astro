@@ -3,58 +3,41 @@ import "../styles/hero.css";
 ---
 
 <section class="hero">
-  <div class="container hero-container">
-    <div class="content">
-      <div class="decoration-icon">
-        <!-- Abstract snowflake/star shape -->
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M30 0L33.5 26.5L60 30L33.5 33.5L30 60L26.5 33.5L0 30L26.5 26.5L30 0Z"
-            fill="#E0F2FE"></path>
-        </svg>
-      </div>
+  <img src="/images/hero/background.png" alt="" aria-hidden="true" />
 
+  <div class="container">
+    <div>
       <h1>
-        Eco Project Manager <br />
-        <span class="highlight">Mobile App</span>
+        <span>Eco Project Manager</span>
+        <strong>Mobile App</strong>
       </h1>
 
-      <p class="description">
+      <p>
         Chương trình dành riêng cho những người trẻ đam mê làm chủ sản phẩm di
         động, với khát vọng kiến tạo ứng dụng triệu người dùng và chinh phục thị
         trường toàn cầu.
       </p>
 
-      <div class="meta">
-        <strong>Thời gian ứng tuyển: 12/12/2025 - 31/12/2025</strong>
-      </div>
+      <p>Thời gian ứng tuyển: 12/12/2025 - 31/12/2025</p>
 
-      <a href="#challenge" class="btn-cta">Sẵn sàng thử thách</a>
+      <a href="#apply">Sẵn sàng thử thách</a>
     </div>
 
-    <div class="visual">
-      <!-- Simulated Image Area with Background Graphic -->
-      <div class="graphic-bg">
+    <div class="hero-image-wrapper">
+      <img src="/images/hero/image.png" alt="Eco Project Manager Team" />
+
+      <div class="sparkle" aria-hidden="true">
         <svg
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg"
-          class="arrow-shape">
+          width="40"
+          height="67"
+          viewBox="0 0 40 67"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
           <path
-            fill="#2563EB"
-            d="M40,-65C52,-55,60,-40,65,-25C70,-10,72,5,68,20C64,35,55,50,42,60C29,70,12,75,-3,77C-18,79,-33,78,-45,70C-57,62,-66,47,-70,31C-74,15,-73,-2,-65,-16C-57,-30,-42,-41,-28,-49C-14,-57,0,-62,15,-60Z"
-            transform="translate(100 100)"></path>
+            opacity="0.5"
+            d="M40 33.5C22.3467 35.6706 21.2957 37.4297 19.9987 67C18.7017 37.4297 17.6533 35.6706 0 33.5C17.6533 31.3294 18.7043 29.5703 19.9987 0C21.2957 29.5703 22.3441 31.3294 40 33.5Z"
+            fill="#2A6CE0"></path>
         </svg>
-      </div>
-      <div class="image-placeholder">
-        <!-- In a real app, this would be: <img src="/path/to/team.png" alt="Team" /> -->
-        <div class="placeholder-content">
-          <span>Team Image Placeholder</span>
-        </div>
       </div>
     </div>
   </div>
