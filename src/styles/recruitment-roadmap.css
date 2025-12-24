@@ -1,0 +1,266 @@
+/* Recruitment Roadmap Section */
+.recruitment-roadmap-section {
+  padding: 3rem 1.5rem;
+  background-color: #f8f9fa; /* Light gray background like design */
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .recruitment-roadmap-section {
+    padding: 5rem 2rem;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.roadmap-container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Title */
+.roadmap-title {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary); /* Uses global blue */
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .roadmap-title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .roadmap-title {
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 0;
+    position: absolute;
+    top: 0;
+    left: 2rem;
+  }
+}
+
+/* Desktop Wave Background */
+.desktop-wave {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .desktop-wave {
+    display: block;
+  }
+}
+
+/* Steps Grid/Flex */
+.roadmap-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .roadmap-steps {
+    display: block; /* Use absolute positioning for children */
+    height: 600px; /* Space for the wave */
+    position: relative;
+    width: 100%;
+    margin-top: 5rem;
+  }
+}
+
+/* Individual Step */
+.roadmap-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .roadmap-step {
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 250px;
+    text-align: center;
+  }
+}
+
+/* Connecting Line (Mobile) */
+.roadmap-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 30px; /* Half of icon size */
+  top: 60px; /* Icon size */
+  bottom: -2rem; /* Gap size */
+  width: 2px;
+  background-color: #cbd5e1; /* Light gray line */
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .roadmap-step:not(:last-child)::after {
+    display: none; /* Hide mobile line on desktop */
+  }
+}
+
+/* Icon Box */
+.step-icon-box {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  background-color: white; /* Or maybe linear gradient blue if active */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  z-index: 1;
+  position: relative;
+}
+
+.step-icon-box svg {
+  width: 32px;
+  height: 32px;
+  /* color managed in svg attributes */
+}
+
+/* Special styling for Star Icon (Final step) */
+.step-icon-box.star {
+  background: transparent;
+  box-shadow: none;
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  margin-top: -20px;
+}
+
+.step-icon-box.star svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(42, 108, 224, 0.3));
+}
+
+@media (min-width: 1024px) {
+  .step-icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    margin-top: -40px; /* Pull up to sit on line? Adjust manually */
+    background: linear-gradient(135deg, #60A5FA 0%, #2563EB 100%);
+  }
+
+  /* Some icons are just on white background? design shows briefcase on light blue gradient?
+     Let's look at design again.
+     1. Sheet: Light blue gradient card? No, simple icon.
+     2. Chat: Simple icon.
+     3. Briefcase: Simple icon.
+     4. Megaphone: Simple icon.
+     5. Star: Big star.
+
+     Actually the icons are sitting "above" or "below" the line.
+     And they have a "tail" pointing to the line often.
+  */
+
+  /* Resetting mobile styles mostly, and applying specific positioning */
+
+  /* Step 1: Vòng hồ sơ */
+  .step-1 {
+    bottom: 25%;
+    left: 5%;
+  }
+  .step-1 .step-icon-box {
+    background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 100%);
+    /* Actually looking at design, "Vong ho so" has a document icon light blue. */
+  }
+
+  /* Step 2: Phỏng vấn */
+  .step-2 {
+    bottom: 10%;
+    left: 22%;
+  }
+  .step-2 .step-icon-box {
+     background: #BAE6FD; /* Light blue box */
+  }
+
+  /* Step 3: Một ngày trải nghiệm */
+  .step-3 {
+    top: 30%;
+    left: 40%;
+  }
+
+  /* Step 4: Thông báo kết quả */
+  .step-4 {
+    bottom: 20%;
+    right: 25%;
+  }
+
+  /* Step 5: Tham gia */
+  .step-5 {
+    top: 15%;
+    right: 5%;
+  }
+}
+
+/* Content */
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 0.25rem;
+}
+
+@media (min-width: 1024px) {
+  .step-title {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Dashed Line on Curve (SVG) */
+/* We will handle the wave using an SVG in the HTML */
+
+/* Adjusting icon styles based on the specific card look in design */
+
+/* Universal adjustments for the specific visual style from image */
+/* 1. Document icon is on a light blue vertical rect */
+.icon-type-document {
+  /* Custom specific styling if needed */
+}
+
+/* 2. User icon ? No it's a chat bubble in design? "Phong van" has a user icon with question mark. */
+
+/* 3. Briefcase icon - "Mot ngay trai nghiem" */
+
+/* 4. Megaphone - "Thong bao ket qua" */
+
+/* 5. Star - "Tham gia" */
