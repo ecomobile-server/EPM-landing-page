@@ -41,11 +41,19 @@
   align-items: flex-start;
 }
 
+.decoration-icon {
+  display: none;
+}
+
 @media (min-width: 1024px) {
   .benefits-intro {
     flex: 0 0 32%; /* Approx 1/3 width */
     position: sticky;
-    top: 5rem;
+    top: 0rem;
+  }
+
+  .decoration-icon {
+    display: block;
   }
 }
 
