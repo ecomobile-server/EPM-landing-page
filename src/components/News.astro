@@ -78,7 +78,9 @@ const { cards = defaultCards } = Astro.props;
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const newsCards = document.querySelectorAll(".news-card");
-    const scrollWrapper = document.querySelector(".news-scroll-wrapper") as HTMLElement;
+    const scrollWrapper = document.querySelector(
+      ".news-scroll-wrapper"
+    ) as HTMLElement;
 
     // Video play/pause on hover
     newsCards.forEach((card) => {
