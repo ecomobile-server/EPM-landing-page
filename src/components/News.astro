@@ -128,12 +128,6 @@ const { cards = defaultCards } = Astro.props;
         const walk = (x - startX) * 2; // Scroll speed multiplier
         scrollWrapper.scrollLeft = scrollLeft - walk;
       });
-
-      // Mouse wheel horizontal scroll
-      scrollWrapper.addEventListener("wheel", (e: WheelEvent) => {
-        e.preventDefault();
-        scrollWrapper.scrollLeft += e.deltaY;
-      });
     }
   });
 </script>
