@@ -5,6 +5,8 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid #e5e7eb;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* The header uses the global `.container` element.
@@ -13,6 +15,7 @@
 .header-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  max-width: var(--content-max-width);
 }
 
 /* Note: .container is already in global.css, but we keep the flex properties here or use a utility class.
@@ -56,7 +59,7 @@
 .logo-text {
   font-family: Montserrat;
   white-space: nowrap;
-  display: none;
+  display: inline;
 }
 
 .nav {
@@ -161,8 +164,9 @@
 .nav-mobile-panel {
   position: absolute;
   top: calc(100% + 0.5rem);
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
+  left: auto;
+  transform: none;
   min-width: 220px;
   background: #fff;
   border: 1px solid rgba(31, 41, 55, 0.12);
@@ -210,10 +214,7 @@
 }
 /* Breakpoints (grouped) */
 @media (min-width: 1190px) {
-  .header-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+
 
   .logo {
     font-size: 1.5rem;
@@ -240,10 +241,7 @@
 }
 
 @media (min-width: 1400px) {
-  .header-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+
 
   .header-container {
     gap: 2rem;
@@ -257,10 +255,10 @@
     width: 61px;
   }
 
-  .nav {
+  /* .nav {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
+  } */
 
   .nav a {
     font-size: 1.125rem;
@@ -272,32 +270,16 @@
   }
 }
 
-@media (min-width: 1560px) {
-  .header-container {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-
-  .nav {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
 @media (min-width: 1800px) {
-  .header-container {
-    padding-left: 10rem;
-    padding-right: 10rem;
-  }
 
   .header-container {
     gap: 3.5rem;
   }
 
-  .nav {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
+  /* .nav {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  } */
 
   .nav a {
     font-size: 1.25rem;

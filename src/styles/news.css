@@ -4,7 +4,8 @@
 }
 
 .news-container {
-  max-width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
   padding-left: 80px;
   padding-right: 6px;
 }

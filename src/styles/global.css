@@ -9,6 +9,7 @@
   --color-text-light: #6b7280;
   --color-background: #ffffff;
   --color-background-soft: #f9fafb;
+  --content-max-width: 1440px;
 }
 
 html {
@@ -29,7 +30,7 @@ body {
 }
 
 .container {
-  max-width: auto;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
