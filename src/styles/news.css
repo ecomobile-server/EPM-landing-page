@@ -167,3 +167,164 @@
     line-height: 1.4;
   }
 }
+
+/* Reels Modal Styles */
+.reels-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reels-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.reels-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: background 0.2s;
+}
+
+.reels-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.reels-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px; /* Typical mobile width */
+  height: 90vh;
+  margin: 0 20px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reels-video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure full video is seen */
+  display: block;
+}
+
+.reels-info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 20px 50px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  pointer-events: none;
+}
+
+.reels-info-overlay h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  padding-right: 60px; /* Avoid overlap with close button on mobile */
+}
+
+@media (max-width: 480px) {
+  .reels-video-wrapper {
+    width: 100%;
+    margin: 0;
+    height: 100dvh; /* Use dynamic viewport height to account for browser UI */
+    max-height: 100%; /* Safety fallback */
+    border-radius: 0;
+    max-width: none;
+    /* Ensure controls are visible by adding padding if necessary, but 100dvh usually fixes it */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Reels Navigation Buttons */
+.reels-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10002;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reels-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reels-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.reels-nav svg {
+  width: 32px;
+  height: 32px;
+}
+
+.reels-nav.prev {
+  left: 30px;
+}
+
+.reels-nav.next {
+  right: 30px;
+}
+
+@media (max-width: 768px) {
+  .reels-nav {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.3); /* Darker backdrop for visibility on video */
+  }
+
+  .reels-nav.prev {
+    left: 10px;
+  }
+
+  .reels-nav.next {
+    right: 10px;
+  }
+
+  .reels-nav svg {
+    width: 24px;
+    height: 24px;
+  }
+}

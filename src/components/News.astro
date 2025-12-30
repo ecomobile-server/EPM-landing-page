@@ -75,6 +75,60 @@ const { cards = defaultCards } = Astro.props;
   </div>
 </section>
 
+<!-- Reels Modal Overlay -->
+<div class="reels-modal" id="reelsModal">
+  <button class="reels-close-btn" id="reelsCloseBtn" aria-label="Close">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M18 6L6 18M6 6L18 18"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </button>
+  <div class="reels-video-wrapper">
+    <video id="reelsVideo" controls autoplay playsinline loop></video>
+    <div class="reels-info-overlay">
+      <h3 id="reelsTitle"></h3>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button class="reels-nav prev" id="reelsPrevBtn" aria-label="Previous Video">
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="feather feather-chevron-left"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><polyline points="15 18 9 12 15 6"></polyline></svg
+    >
+  </button>
+  <button class="reels-nav next" id="reelsNextBtn" aria-label="Next Video">
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="feather feather-chevron-right"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg
+    >
+  </button>
+</div>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const newsCards = document.querySelectorAll(".news-card");
@@ -82,7 +136,141 @@ const { cards = defaultCards } = Astro.props;
       ".news-scroll-wrapper"
     ) as HTMLElement;
 
-    // Drag to scroll functionality
+    // Modal Elements
+    const modal = document.getElementById("reelsModal");
+    const videoObj = document.getElementById("reelsVideo") as HTMLVideoElement;
+    const titleObj = document.getElementById("reelsTitle");
+    const closeBtn = document.getElementById("reelsCloseBtn");
+    const prevBtn = document.getElementById("reelsPrevBtn");
+    const nextBtn = document.getElementById("reelsNextBtn");
+
+    let items: { src: string; title: string }[] = [];
+    let currentIndex = 0;
+
+    // Collect all video data first
+    newsCards.forEach((card) => {
+      const cardVideo = card.querySelector("video");
+      const cardTitle = card.querySelector(".news-card-title");
+      if (cardVideo) {
+        items.push({
+          src: cardVideo.getAttribute("src") || "",
+          title: cardTitle?.textContent || "",
+        });
+      }
+    });
+
+    const loadVideo = (index: number) => {
+      if (!videoObj || !titleObj) return;
+
+      // Wrap index
+      if (index < 0) index = items.length - 1;
+      if (index >= items.length) index = 0;
+
+      currentIndex = index;
+      const item = items[currentIndex];
+
+      videoObj.src = item.src;
+      if (titleObj) titleObj.textContent = item.title;
+      videoObj.play().catch((e) => console.log("Auto-play prevented", e));
+    };
+
+    // Open Modal
+    newsCards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        if (modal) {
+          currentIndex = index; // Assuming direct mapping 1:1
+          loadVideo(currentIndex);
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+
+    // Close Modal Function
+    const closeModal = () => {
+      if (modal && videoObj) {
+        modal.classList.remove("active");
+        videoObj.pause();
+        videoObj.src = "";
+        document.body.style.overflow = "";
+      }
+    };
+
+    // Auto-hide controls logic
+    let controlTimeout: NodeJS.Timeout;
+    const showControls = () => {
+      prevBtn?.classList.add("visible");
+      nextBtn?.classList.add("visible");
+
+      clearTimeout(controlTimeout);
+      // User requested "hide after 0.5s if not used", but 0.5s is too fast for interaction.
+      // Interpreting "if not used" as idle time. Setting 2000ms for better UX, or strictly 500ms if desired.
+      // Let's go with a slightly longer delay (1.5s) to allow clicking,
+      // but if mouse leaves nav, it hides faster?
+      // Let's try 1500ms.
+      controlTimeout = setTimeout(() => {
+        prevBtn?.classList.remove("visible");
+        nextBtn?.classList.remove("visible");
+      }, 2000);
+    };
+
+    // Show controls on any interaction inside modal
+    const videoWrapper = document.querySelector(".reels-video-wrapper");
+
+    // Tap/Click on video area to toggle controls or just show them?
+    // User said "Click on screen to show".
+    videoWrapper?.addEventListener("click", (e) => {
+      // Don't interfere if clicking controls (though controls are outside wrapper in HTML structure? No, buttons are siblings.)
+      // Actually buttons are siblings to wrapper in my code.
+      // So clicking wrapper is clicking video.
+      showControls();
+    });
+
+    // Also support desktop mouse move to keep them visible
+    modal?.addEventListener("mousemove", () => {
+      showControls();
+    });
+
+    // Keep visible if hovering buttons
+    prevBtn?.addEventListener("mouseover", showControls);
+    nextBtn?.addEventListener("mouseover", showControls);
+
+    // Controls
+    prevBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      loadVideo(currentIndex - 1);
+      showControls(); // Keep showing
+    });
+
+    nextBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      loadVideo(currentIndex + 1);
+      showControls(); // Keep showing
+    });
+
+    // Close Event Listeners
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal?.classList.contains("active")) {
+        closeModal();
+      }
+    });
+
+    // Drag to scroll functionality (Existing)
     if (scrollWrapper) {
       let isDown = false;
       let startX: number;
