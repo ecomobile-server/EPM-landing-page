@@ -278,16 +278,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  cursor: pointer;
   z-index: 10002;
   transition: all 0.2s ease;
   backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
 }
 
 .reels-nav.visible {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
 
 .reels-nav:hover {
