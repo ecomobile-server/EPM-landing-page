@@ -235,7 +235,7 @@
 
 @media (max-width: 480px) {
   .cta-section {
-    padding: 40px 16px;
+    padding: 20px 16px;
   }
 
   .cta-card {
@@ -244,42 +244,68 @@
   }
 
   .cta-title {
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin-bottom: 24px;
   }
 
   .cta-highlight {
-    display: block;
+    display: inline-block; /* Changed from block to inline-block or just remove block to let it flow if needed, but visually it looks like it could be inline-block with background */
+    background: #BAE9F2;
+    color: #2563eb;
+    padding: 2px 6px;
     margin-left: 0;
-    margin-top: 8px;
   }
 
   .cta-subtitle {
-    font-size: 13px;
-    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
   }
 
   .cta-actions {
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    width: 100%;
   }
 
   .cta-deadline {
-    font-size: 13px;
+    font-size: 14px;
+    margin-bottom: 0;
+    justify-content: center;
+    width: 100%;
+    color: #ffffff;
+    gap: 8px;
+  }
+
+  .cta-deadline svg {
+      width: 20px;
+      height: 20px;
   }
 
   .cta-button {
     font-size: 16px;
-    padding: 12px 32px;
-    gap: 12px;
-    width: 100%;
+    padding: 12px 28px;
+    gap: 8px;
+    /* width: 100%; */
+    justify-content: center;
+    border-radius: 99px; /* Pill shape */
+  }
+
+  .cta-button svg {
+    width: 24px;
+    height: 16px;
   }
 
   .cta-notes {
-    padding: 0 8px;
+    margin-top: 32px;
+    padding: 0;
   }
 
   .cta-notes-title {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .cta-notes-list li {

@@ -43,11 +43,24 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.benefits-intro .btn-primary {
+  display: none;
 }
 
 .decoration-icon {
-  display: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #E0F2FE;
+}
+
+.decoration-icon svg {
+  width: 6rem;
+  height: 6rem;
 }
 
 @media (min-width: 1024px) {
@@ -55,36 +68,40 @@
     flex: 0 0 32%; /* Approx 1/3 width */
     position: sticky;
     top: 0rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .benefits-intro .btn-primary {
+    display: inline-flex;
   }
 
   .decoration-icon {
     display: block;
-  }
-}
-
-.decoration-icon {
-  margin-bottom: 3rem;
-  color: #E0F2FE;
-}
-
-@media (min-width: 1024px) {
-  .decoration-icon {
     margin-bottom: 7rem;
+  }
+
+  .decoration-icon svg {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .benefits-title {
+    font-size: 2.75rem;
   }
 }
 
 .benefits-title {
   color: var(--color-primary);
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
 .benefits-desc {
   color: var(--color-text-light);
-  margin-bottom: 4rem; /* Space before button */
   line-height: 1.6;
   font-size: 1.125rem;
   font-weight: 400;
@@ -106,13 +123,21 @@
 /* Cards */
 .benefit-card {
   background-color: var(--color-background);
-  border-radius: 2.5rem;
-  padding: 2.5rem;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .benefit-card {
+    border-radius: 2.5rem;
+    padding: 2.5rem;
+    gap: 2rem;
+  }
 }
 
 .benefit-card:hover {
@@ -150,7 +175,7 @@
 }
 
 .benefit-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-primary);
   margin: 0;
@@ -171,10 +196,21 @@
 .benefit-card ul li {
   position: relative;
   padding-left: 1rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--color-text-light); /* Gray text */
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .benefit-card ul li {
+    font-size: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .benefit-card h3 {
+    font-size: 21px;
+  }
 }
 
 .benefit-card ul li::before {

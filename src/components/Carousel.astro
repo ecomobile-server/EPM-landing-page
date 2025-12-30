@@ -6,79 +6,113 @@ interface Props {
     src: string;
     alt: string;
   }>;
+  mobileImages?: Array<{
+    src: string;
+    alt: string;
+  }>;
   autoPlay?: boolean;
   autoPlayInterval?: number;
 }
 
-const { images, autoPlay = true, autoPlayInterval = 5000 } = Astro.props;
+const {
+  images,
+  mobileImages,
+  autoPlay = true,
+  autoPlayInterval = 5000,
+} = Astro.props;
+
+const carouselGroups = [
+  {
+    id: "desktop",
+    images: images,
+    className: `desktop-carousel ${mobileImages?.length ? "hidden-mobile" : ""}`,
+  },
+  ...(mobileImages?.length
+    ? [
+        {
+          id: "mobile",
+          images: mobileImages,
+          className: "mobile-carousel hidden-desktop",
+        },
+      ]
+    : []),
+];
 ---
 
 <section class="carousel-section">
-  <div class="carousel-container">
-    <div class="carousel-star">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M60 0C68.8506 28.6825 91.3049 51.1494 120 60C91.3175 68.8506 68.8506 91.3049 60 120C51.1494 91.3049 28.6825 68.838 0 60C28.6825 51.1494 51.1494 28.6825 60 0Z"
-          fill="#2A6CE0"></path>
-      </svg>
-    </div>
-    <div class="carousel-wrapper">
-      <div
-        class="carousel-track"
-        data-autoplay={autoPlay}
-        data-interval={autoPlayInterval}>
-        {
-          images.map((image, index) => (
-            <div class="carousel-slide" data-index={index}>
-              <img src={image.src} alt={image.alt} />
-            </div>
-          ))
-        }
-      </div>
+  {
+    carouselGroups.map((group) => (
+      <div class={`carousel-container ${group.className}`}>
+        <div class="carousel-star">
+          <svg
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M60 0C68.8506 28.6825 91.3049 51.1494 120 60C91.3175 68.8506 68.8506 91.3049 60 120C51.1494 91.3049 28.6825 68.838 0 60C28.6825 51.1494 51.1494 28.6825 60 0Z"
+              fill="#2A6CE0"
+            />
+          </svg>
+        </div>
+        <div class="carousel-wrapper">
+          <div
+            class="carousel-track"
+            data-autoplay={autoPlay}
+            data-interval={autoPlayInterval}>
+            {group.images.map((image, index) => (
+              <div class="carousel-slide" data-index={index}>
+                <img src={image.src} alt={image.alt} />
+              </div>
+            ))}
+          </div>
 
-      <button
-        class="carousel-btn carousel-btn-prev"
-        aria-label="Previous slide">
-        <svg
-          width="29"
-          height="29"
-          viewBox="0 0 29 29"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M19.6001 2.80005L8.4001 14L19.6001 25.2"
-            stroke="#2A6CE0"
-            stroke-width="3.2"></path>
-        </svg>
-      </button>
-      <button class="carousel-btn carousel-btn-next" aria-label="Next slide">
-        <svg
-          width="29"
-          height="29"
-          viewBox="0 0 29 29"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M9.19995 2.80005L20.4 14L9.19995 25.2"
-            stroke="#2A6CE0"
-            stroke-width="3.2"></path>
-        </svg>
-      </button>
-    </div>
-
-    <div class="carousel-indicators">
-      {
-        images.map((_, index) => (
           <button
-            class="indicator"
-            class:list={{ active: index === 0 }}
-            data-index={index}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))
-      }
-    </div>
-  </div>
+            class="carousel-btn carousel-btn-prev"
+            aria-label="Previous slide">
+            <svg
+              width="29"
+              height="29"
+              viewBox="0 0 29 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19.6001 2.80005L8.4001 14L19.6001 25.2"
+                stroke="#2A6CE0"
+                stroke-width="3.2"
+              />
+            </svg>
+          </button>
+          <button
+            class="carousel-btn carousel-btn-next"
+            aria-label="Next slide">
+            <svg
+              width="29"
+              height="29"
+              viewBox="0 0 29 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.19995 2.80005L20.4 14L9.19995 25.2"
+                stroke="#2A6CE0"
+                stroke-width="3.2"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-indicators">
+          {group.images.map((_, index) => (
+            <button
+              class="indicator"
+              class:list={{ active: index === 0 }}
+              data-index={index}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    ))
+  }
 </section>
 
 <script>

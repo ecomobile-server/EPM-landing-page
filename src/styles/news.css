@@ -133,7 +133,7 @@
 
 @media (max-width: 480px) {
   .news-section {
-    padding: 40px 0;
+    padding: 30px 0;
   }
 
   .news-container {
@@ -141,8 +141,8 @@
   }
 
   .news-title {
-    font-size: 28px;
-    margin-bottom: 24px;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   .news-scroll-wrapper {
@@ -150,18 +150,20 @@
   }
 
   .news-card {
-    width: 240px;
+    width: 160px;
+    border-radius: 20px;
   }
 
   .news-card-media {
-    height: 400px;
+    height: 280px;
   }
 
   .news-card-overlay {
-    padding: 20px 16px;
+    padding: 16px 12px;
   }
 
   .news-card-title {
     font-size: 14px;
+    line-height: 1.4;
   }
 }

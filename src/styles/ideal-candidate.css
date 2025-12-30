@@ -1,6 +1,6 @@
 /* Ideal Candidate Section */
 .ideal-candidate-section {
-  padding: 2rem 3rem 3rem 3rem; /* Reduced top padding for mobile */
+  padding: 2rem; /* Reduced top padding for mobile */
   background-color: #ffffff;
   position: relative;
   overflow: hidden;
@@ -125,11 +125,12 @@
 /* Cards */
 .candidate-card {
   background-color: #f3f4f6;
-  margin-top: 1.5rem; /* Top margin for floating icon on mobile */
+  margin-top: 2.5rem; /* Top margin for floating icon on mobile */
   border-radius: 2rem;
   padding: 2rem; /* Clean padding for mobile */
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 .candidate-card h3 {
@@ -160,11 +161,17 @@
   align-items: center;
   justify-content: center;
   color: white;
+  /* Shared styles */
   box-shadow: 0 4px 6px rgba(42, 108, 224, 0.25);
+}
 
-  /* Mobile Default: Top Left floating */
-  top: -20px;
-  left: 20px;
+@media (max-width: 1023px) {
+  .card-icon-box {
+    /* Mobile: Top Left floating */
+    top: -20px;
+    left: 20px;
+    transform: none;
+  }
 }
 
 .card-icon-box svg {
@@ -234,6 +241,7 @@
     top: -20px;
     right: -20px;
     left: auto; /* Reset mobile left */
+    transform: none;
   }
 
   /* Card 2: Bottom Left */
@@ -248,6 +256,7 @@
     right: -20px;
     top: auto; /* Reset top */
     left: auto;
+    transform: none;
   }
 
   /* Card 3: Top Right */
@@ -261,6 +270,7 @@
     top: -20px;
     right: -20px; /* User wanted right */
     left: auto;
+    transform: none;
   }
 
   /* Card 4: Bottom Right */
@@ -274,6 +284,7 @@
     top: -20px;
     right: -20px; /* User wanted right */
     left: auto;
+    transform: none;
   }
 
   /* Image Layering */

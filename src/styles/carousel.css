@@ -275,3 +275,23 @@
     width: 20px;
   }
 }
+
+/* Visibility Control */
+.hidden-desktop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+  .hidden-desktop {
+    display: block;
+  }
+
+  /* Mobile Carousel Specific Styles */
+  .carousel-wrapper {
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+}
