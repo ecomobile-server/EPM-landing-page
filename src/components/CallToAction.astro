@@ -14,7 +14,7 @@ interface Props {
 const {
   title = "Bạn có muốn trở thành thế hệ PM mới của ngành Mobile App cùng với",
   highlightText = "EPM Gen 2.0?",
-  subtitle = "Hãy dành ít phút ngắn lại để điền form ứng tuyển cho EPM Gen 2.0 dưới đây, giúp chúng tôi có thể hiểu rõ hơn về bạn.",
+  subtitle = "Hoàn tất hồ sơ ứng tuyển để chính thức bắt đầu hành trình. Eco Mobile rất mong chờ những chia sẻ tâm huyết từ bạn.",
   deadline = "31/12/2025",
   buttonText = "Nộp đơn ứng tuyển",
   buttonLink = "https://forms.gle/NiqcbMifh4uLr6QB8",
@@ -96,3 +96,35 @@ const {
     }
   </div>
 </section>
+
+<script>
+  // Trigger highlight animation when CTA section is in view
+  const ctaHighlight = document.querySelector(".cta-highlight");
+
+  if (ctaHighlight) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add a small delay for better effect
+            setTimeout(() => {
+              ctaHighlight.classList.add("visible");
+            }, 300);
+            // Stop observing after animation triggers
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: "0px",
+      }
+    );
+
+    // Observe the CTA section
+    const ctaSection = document.querySelector(".cta-section");
+    if (ctaSection) {
+      observer.observe(ctaSection);
+    }
+  }
+</script>
