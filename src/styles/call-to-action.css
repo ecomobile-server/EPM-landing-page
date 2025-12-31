@@ -84,7 +84,7 @@
 
 /* Animation triggers when visible class is added */
 .cta-highlight.visible::before {
-  animation: highlightDraw 1.2s ease-out forwards;
+  animation: highlightDraw 0.5s ease-out forwards;
 }
 
 @keyframes highlightDraw {
@@ -165,11 +165,24 @@
 }
 
 .cta-arrow-icon {
-  transition: transform 0.3s ease;
+  display: block;
+  will-change: transform;
+  animation: arrowShake 1s infinite ease-in-out;
+}
+
+@keyframes arrowShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(12px);
+  }
 }
 
 .cta-button:hover .cta-arrow-icon {
-  transform: translateX(4px);
+  animation: none;
+  transform: translateX(12px);
+  transition: transform 0.3s ease;
 }
 
 .cta-notes {

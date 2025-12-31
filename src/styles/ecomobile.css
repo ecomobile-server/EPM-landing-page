@@ -65,7 +65,7 @@
 @media (min-width: 1450px) {
   .content-wrapper {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.9fr 1.1fr;
     gap: 6rem;
     margin-bottom: 6rem;
   }
@@ -105,6 +105,16 @@
 .description strong {
   font-weight: 600;
   opacity: 1;
+}
+
+.desktop-only-br {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .desktop-only-br {
+    display: inline;
+  }
 }
 
 .stats-grid {
