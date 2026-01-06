@@ -76,6 +76,38 @@
   .benefits-intro .btn-primary {
     display: inline-flex;
     margin-bottom: 4rem;
+
+    /* Reset background */
+    background-image: none;
+
+    /* Attention Shake + Neon Glow */
+    animation: benefits-shake 3s cubic-bezier(.36,.07,.19,.97) infinite both,
+               benefits-glow 2s ease-in-out infinite alternate;
+  }
+
+  .benefits-intro .btn-primary:hover {
+    animation-play-state: paused;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 30px rgba(42, 108, 224, 0.8);
+  }
+
+  @keyframes benefits-shake {
+    0%, 90%, 100% { transform: translate3d(0, 0, 0); }
+    91% { transform: translate3d(-3px, 0, 0); }
+    92% { transform: translate3d(3px, 0, 0); }
+    93% { transform: translate3d(-3px, 0, 0); }
+    94% { transform: translate3d(3px, 0, 0); }
+    95% { transform: translate3d(-3px, 0, 0); }
+    96% { transform: translate3d(3px, 0, 0); }
+  }
+
+  @keyframes benefits-glow {
+    from {
+      box-shadow: 0 0 10px rgba(42, 108, 224, 0.4);
+    }
+    to {
+      box-shadow: 0 0 25px rgba(42, 108, 224, 0.7), 0 0 10px rgba(42, 108, 224, 0.5) inset;
+    }
   }
 
   .decoration-icon {
